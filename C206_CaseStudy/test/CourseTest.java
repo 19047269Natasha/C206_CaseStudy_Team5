@@ -88,5 +88,6 @@ public class CourseTest {
 		assertEquals("Test that the size of courseList is 0 before deleting 1 course: ", 0, CourseDB.courseList.size());
 
 	}
-
 }
+
+
