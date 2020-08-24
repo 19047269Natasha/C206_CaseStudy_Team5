@@ -16,10 +16,10 @@ public class CourseDB {
 		
 		if(courseList.size() > 0) {
 			
-			output = String.format("%-25s %-25s %-25s %-25s %-25s %-25s\n", "COURSE CODE", "COURSE TITLE", "CATEGORY NAME", "COURSE DESCRIPTION", "COURSE DURATION", "PRE-REQUISITE COURSE");
+			output = String.format("%-15s %-25s %-25s %-25s %-25s %-25s\n", "COURSE CODE", "COURSE TITLE", "CATEGORY NAME", "COURSE DESCRIPTION", "COURSE DURATION", "PRE-REQUISITE COURSE");
 			for(int i = 0; i < courseList.size(); i++) {
 				
-				output += String.format("%-25s %-25s %-25s %-25s %-25d %-25s\n", courseList.get(i).getCourseCode(), courseList.get(i).getCourseTitle(), courseList.get(i).getCategoryName(), courseList.get(i).getCourseDescription(), courseList.get(i).getCourseDuration(), courseList.get(i).getPrerequisiteCourse());
+				output += String.format("%-15s %-25s %-25s %-25s %-25d %-25s\n", courseList.get(i).getCourseCode(), courseList.get(i).getCourseTitle(), courseList.get(i).getCategoryName(), courseList.get(i).getCourseDescription(), courseList.get(i).getCourseDuration(), courseList.get(i).getPrerequisiteCourse());
 			}
 		}
 		else {
@@ -41,7 +41,7 @@ public class CourseDB {
 		}
 		
 		if(isTrue == false) {
-			System.out.println("Course Does Not Exist!");
+			System.out.println("Invalid Course Code!");
 		}
 		else {
 			System.out.println("Course Deleted!");
