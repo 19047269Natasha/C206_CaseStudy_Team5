@@ -9,8 +9,46 @@ public class C206_CaseStudy {
 		while(option != 6) {
 			System.out.println("MAIN MENU");
 			Helper.line(30, "-");
+			System.out.println("1. Register/Add member account");
+			System.out.println("2. Add course category");
+			System.out.println("3. Add course");
+			System.out.println("4. Add course schedule");
+			System.out.println("5. Register for a course schedule");
+			System.out.println("6. Quit");
+			
+			option = Helper.readInt("Enter an option > ");
+			Helper.line(25, "-");
+			
+			if(option == 1) {
+				Member m = new Member();
+				m.start();
+			}
+			else if(option == 2) {
+				CourseCategory cc = new CourseCategory();
+				cc.start();
+			}
+			else if(option == 3) {
+				Course c = new Course();
+				c.start();
+				
+			}
+			else if(option == 4) {
+				CourseSchedule cs = new CourseSchedule();
+				cs.start();
+			}
+			else if(option == 5) {
+				Registration r = new Registration();
+				r.start();
+			} 
+			
+			else if(option == 6) {
+				System.out.println("Good Bye!");
+				
+			}
+			else {
+				
+				System.out.println("Invalid option");
+			}
 		}
-
 	}
-
 }
