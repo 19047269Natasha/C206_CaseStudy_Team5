@@ -39,7 +39,23 @@ public class Course {
 	
 	public void addCourse() {
 		
+		String courseCode = Helper.readString("Enter course code > ");
+		String courseTitle = Helper.readString("Enter course title > ");
+		String categoryName = Helper.readString("Enter category name > ");
+		String courseDescription = Helper.readString("Enter course description > ");
+		int courseDuration = Helper.readInt("Enter course duration > ");
+		String prerequisiteCourse = Helper.readString("Enter pre-requisite course > ");
 		
+		CourseMain newCourse = new CourseMain(courseCode, courseTitle, categoryName, courseDescription, courseDuration, prerequisiteCourse);
+		CourseDB.courseList.add(newCourse);
+	
 	}
+	
+	public void delCourse() {
+		
+		String courseCode = Helper.readString("Enter course code > ");
+		CourseDB.delCourse(courseCode);
+	}
+	
 
 }
