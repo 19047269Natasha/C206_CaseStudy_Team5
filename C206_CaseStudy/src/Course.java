@@ -48,6 +48,9 @@ public class Course {
 		
 		CourseMain newCourse = new CourseMain(courseCode, courseTitle, categoryName, courseDescription, courseDuration, prerequisiteCourse);
 		CourseDB.courseList.add(newCourse);
+		Helper.line(30, "-");
+		System.out.println("Course Added Successfully!");
+		
 	}
 
 	public void delCourse() {

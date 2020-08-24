@@ -7,7 +7,7 @@ public class CourseDB {
 	public static void addCourse(CourseMain add) {
 		
 		courseList.add(add);
-		System.out.println("Course Added Successfully!");
+		
 	}
 	
 	public static String viewAllCourse() {
@@ -17,12 +17,14 @@ public class CourseDB {
 		if(courseList.size() > 0) {
 			
 			output = String.format("%-15s %-25s %-25s %-25s %-25s %-25s\n", "COURSE CODE", "COURSE TITLE", "CATEGORY NAME", "COURSE DESCRIPTION", "COURSE DURATION", "PRE-REQUISITE COURSE");
+			Helper.line(30, "-");
 			for(int i = 0; i < courseList.size(); i++) {
 				
 				output += String.format("%-15s %-25s %-25s %-25s %-25d %-25s\n", courseList.get(i).getCourseCode(), courseList.get(i).getCourseTitle(), courseList.get(i).getCategoryName(), courseList.get(i).getCourseDescription(), courseList.get(i).getCourseDuration(), courseList.get(i).getPrerequisiteCourse());
 			}
 		}
 		else {
+			Helper.line(30, "-");
 			output = "Course Not Found";
 		}
 		
@@ -41,9 +43,11 @@ public class CourseDB {
 		}
 		
 		if(isTrue == false) {
+			Helper.line(30, "-");
 			System.out.println("Invalid Course Code!");
 		}
 		else {
+			Helper.line(30, "-");
 			System.out.println("Course Deleted!");
 		}
 	}

@@ -15,6 +15,7 @@ public class C206_CaseStudy {
 			System.out.println("4. Course Schedule");
 			System.out.println("5. Registration");
 			System.out.println("6. Quit");
+			Helper.line(30, "-");
 			
 			option = Helper.readInt("Enter an option > ");
 			Helper.line(25, "-");
