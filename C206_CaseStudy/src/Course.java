@@ -69,8 +69,60 @@ public class Course {
 	
 	public void updCourse() {
 		
-		String courseCode = Helper.readString("Enter course code > ");
-		CourseDB.updateCourse(courseCode);
+		Helper.line(30, "-");
+		System.out.println("1. Change Course Title");
+		System.out.println("2. Change Category Name");
+		System.out.println("3. Change Course Description");
+		System.out.println("4. Change Course Duration");
+		System.out.println("5. Change Pre-Requisite Course");
+		System.out.println("6. Quit");
+		Helper.line(30, "-");
+		
+		int choice = Helper.readInt("Enter an option > ");
+		
+		if(choice == 1) {
+			
+			String code = Helper.readString("Enter course code > ");
+			String title = Helper.readString("Enter new title > ");
+			System.out.println(CourseDB.updateCourse(code, choice, title));
+		}
+		else if (choice == 2) {
+			
+			String code = Helper.readString("Enter course code > ");
+			String category = Helper.readString("Enter new category name > ");
+			System.out.println(CourseDB.updateCourse(code, choice, category));
+			
+		}
+		else if (choice == 3) {
+			
+			String code = Helper.readString("Enter course code > ");
+			String description = Helper.readString("Enter new course description > ");
+			System.out.println(CourseDB.updateCourse(code, choice, description));
+			
+		}
+		else if (choice == 4) {
+			
+			String code = Helper.readString("Enter course code > ");
+			String duration = Helper.readString("Enter new course duration > ");
+			System.out.println(CourseDB.updateCourse(code, choice, duration));
+			
+		}
+		else if (choice == 5) {
+			
+			String code = Helper.readString("Enter course code > ");
+			String preRequisite = Helper.readString("Enter new pre-requisite course > ");
+			System.out.println(CourseDB.updateCourse(code, choice, preRequisite));
+			
+		}
+		else if (choice == 6) {
+			
+			System.out.println("Goodbye!");
+			
+		}
+		else {
+			
+			System.out.println("Invalid Option!");
+		}
 		
 	}
 	

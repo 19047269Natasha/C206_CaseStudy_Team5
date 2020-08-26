@@ -83,26 +83,29 @@ public class CourseTest {
 	
 	@Test
 	public void updCourseTest() {
-		String newTitle = "Software";
-		String newName = "Infocomm";
-		String newDescription = "To develop a software";
-		int newDuration = 6;
-		String newPreRequisite = "Database";
 		
-		course1.setCourseTitle(newTitle);
-		assertEquals("Test that course1 title is update to new title", newTitle, course1.getCourseTitle());
+		CourseDB.addCourse(course1);
 		
-		course1.setCategoryName(newName);
-		assertEquals("Test that course1 name is updated to new name", newName, course1.getCategoryName());
+		String output0 = CourseDB.updateCourse("C206", 1, "Software");
+		assertEquals("Test that course1 title is update to new title", "Course Title Updated", output0);
 		
-		course1.setCourseDescription(newDescription);
-		assertEquals("Test that course1 description is updated to new description", newDescription, course1.getCourseDescription());
+		String output1 = CourseDB.updateCourse("C206", 2, "Infocomm");
+		assertEquals("Test that course1 name is updated to new name", "Category Name Updated", output1);
 		
-		course1.setCourseDuration(newDuration);
-		assertEquals("Test that course1 duration is updated to new duration", newDuration, course1.getCourseDuration());
+		String output2 = CourseDB.updateCourse("C206", 3, "To develop a software");
+		assertEquals("Test that course1 description is updated to new description", "Course Description Updated", output2);
 		
-		course1.setPrerequisiteCourse(newPreRequisite);
-		assertEquals("Test that course1 pre-requisite is updated to new pre-requisite", newPreRequisite, course1.getPrerequisiteCourse());
+		String output3 = CourseDB.updateCourse("C206", 4, "5");
+		assertEquals("Test that course1 duration is updated to new duration", "Course Duration Updated", output3);
+		
+		String output4 = CourseDB.updateCourse("C206", 5, "Database");
+		assertEquals("Test that course1 pre-requisite is updated to new pre-requisite", "Pre-Requisite Course Updated", output4);
+		
+		String output5 = CourseDB.updateCourse("C206", 6, "Invalid Option");
+		assertEquals("Test for invalid option error message", "Invalid Option", output5);
+		
+		String output6 = CourseDB.updateCourse("C206", 2, "Course does not exist");
+		assertEquals("Test for course does not exist error message", "Course does not exist", output6);
 	}
 	
 }

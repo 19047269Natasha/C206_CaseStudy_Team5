@@ -54,54 +54,58 @@ public class CourseDB {
 		}
 	}
 
-	public static void updateCourse(String courseCode) {
+	public static String updateCourse(String courseCode, int option, String change) {
 
-		int option = 0;
+		String output = "";
 
 		boolean isTrue = false;
 
 		for (int i = 0; i < courseList.size(); i++) {
 			if (courseList.get(i).getCourseCode().equalsIgnoreCase(courseCode)) {
-
-				Helper.line(30, "-");
-				System.out.println("1. Change Course Title");
-				System.out.println("2. Change Category Name");
-				System.out.println("3. Change Course Description");
-				System.out.println("4. Change Course Duration");
-				System.out.println("5. Change Pre-Requisite Course");
-				System.out.println("6. Quit");
-				Helper.line(30, "-");
-
-				option = Helper.readInt("Enter an option > ");
-
-				if (option == 1) {
-					String title = Helper.readString("Enter a new course title > ");
-					courseList.get(i).setCourseTitle(title);
-				} else if (option == 2) {
-					String category = Helper.readString("Enter a new category name > ");
-					courseList.get(i).setCategoryName(category);
-				} else if (option == 3) {
-					String description = Helper.readString("Enter a new course description > ");
-					courseList.get(i).setCourseDescription(description);
-				} else if (option == 4) {
-					int duration = Helper.readInt("Enter a new course duration > ");
-					courseList.get(i).setCourseDuration(duration);
-				} else if (option == 5) {
-					String preRequisite = Helper.readString("Enter a new pre-requisite course > ");
-					courseList.get(i).setPrerequisiteCourse(preRequisite);
-				} else if (option == 6) {
+				
+				isTrue = true;
+				if(option == 1) {
+					
+					courseList.get(i).setCourseTitle(change);
+					Helper.line(30, "-");
+					output = "Course Title Updated!";
+				}
+				else if(option == 2) {
+					courseList.get(i).setCategoryName(change);
+					Helper.line(30, "-");
+					output = "Category Name Updated!";
+				}
+				else if(option == 3) {
+					courseList.get(i).setCourseDescription(change);
+					Helper.line(30, "-");
+					output = "Course Description Updated!";
+				}
+				else if(option == 4) {
+					int change_int = Integer.parseInt(change);
+					courseList.get(i).setCourseDuration(change_int);
+					Helper.line(30, "-");
+					output = "Course Duration Updated!";
+				}
+				else if(option == 5) {
+					courseList.get(i).setPrerequisiteCourse(change);
+					Helper.line(30, "-");
+					output = "Course Pre-Requisite Updated!";
+				}
+				else if (option == 6) {
 					System.out.println("Goodbye!");
-				} else {
+				} 
+				else {
 					System.out.println("Invalid option!");
 				}
 
-				isTrue = true;
 			}
 		}
 
 		if (isTrue == false) {
 			System.out.println("Invalid Course Code!");
 		}
+		
+		return output;
 	}
 
 	public static void searchCourse(String categoryName) {
