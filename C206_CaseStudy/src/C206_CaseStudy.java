@@ -17,7 +17,7 @@ public class C206_CaseStudy {
 			System.out.println("6. Quit");
 			
 			option = Helper.readInt("Enter an option > ");
-			Helper.line(25, "-");
+			Helper.line(30, "-");
 			
 			if(option == 1) {
 				Member m = new Member();
