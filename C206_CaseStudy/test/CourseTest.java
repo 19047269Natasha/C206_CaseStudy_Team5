@@ -68,6 +68,7 @@ public class CourseTest {
 
 	}
 
+	@Test
 	public void delCourseTest() {
 
 		assertNotNull("Test that CourseList is not null", CourseDB.courseList);
@@ -79,6 +80,31 @@ public class CourseTest {
 		assertEquals("Test that the size of courseList is 0 before deleting 1 course: ", 0, CourseDB.courseList.size());
 
 	}
+	
+	@Test
+	public void updCourseTest() {
+		String newTitle = "Software";
+		String newName = "Infocomm";
+		String newDescription = "To develop a software";
+		int newDuration = 6;
+		String newPreRequisite = "Database";
+		
+		course1.setCourseTitle(newTitle);
+		assertEquals("Test that course1 title is update to new title", newTitle, course1.getCourseTitle());
+		
+		course1.setCategoryName(newName);
+		assertEquals("Test that course1 name is updated to new name", newName, course1.getCategoryName());
+		
+		course1.setCourseDescription(newDescription);
+		assertEquals("Test that course1 description is updated to new description", newDescription, course1.getCourseDescription());
+		
+		course1.setCourseDuration(newDuration);
+		assertEquals("Test that course1 duration is updated to new duration", newDuration, course1.getCourseDuration());
+		
+		course1.setPrerequisiteCourse(newPreRequisite);
+		assertEquals("Test that course1 pre-requisite is updated to new pre-requisite", newPreRequisite, course1.getPrerequisiteCourse());
+	}
+	
 }
 
 
