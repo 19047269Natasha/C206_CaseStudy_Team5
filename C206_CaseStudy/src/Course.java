@@ -30,8 +30,7 @@ public class Course {
 				delCourse();
 			} 
 			else if (option == 4) {
-				String courseCode = Helper.readString("Enter Course Code > ");
-				CourseDB.updateCourse(courseCode);
+				updCourse();
 			}
 			else if (option == 5) {
 				System.out.println("Goodbye!");
@@ -66,6 +65,13 @@ public class Course {
 
 		String courseCode = Helper.readString("Enter course code > ");
 		CourseDB.delCourse(courseCode);
+	}
+	
+	public void updCourse() {
+		
+		String courseCode = Helper.readString("Enter Course Code > ");
+		CourseDB.updateCourse(courseCode);
+		
 	}
 
 }
