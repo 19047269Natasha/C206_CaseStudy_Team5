@@ -33,7 +33,7 @@ public class Course {
 				updCourse();
 			}
 			else if (option == 5) {
-				System.out.println("Goodbye!");
+				srhCourse();
 			} 
 			else {
 				System.out.println("Invalid Option");
@@ -69,8 +69,15 @@ public class Course {
 	
 	public void updCourse() {
 		
-		String courseCode = Helper.readString("Enter Course Code > ");
+		String courseCode = Helper.readString("Enter course code > ");
 		CourseDB.updateCourse(courseCode);
+		
+	}
+	
+	public void srhCourse() {
+		
+		String categoryName = Helper.readString("Enter category name > ");
+		CourseDB.searchCourse(categoryName);
 		
 	}
 
