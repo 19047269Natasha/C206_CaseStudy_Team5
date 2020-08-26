@@ -27,14 +27,11 @@ public class CourseTest {
 	@Test
 	public void addCourseTest() {
 
-		// Test that courseList is not null
 		assertNotNull("Test that courseList is not null", CourseDB.courseList);
 
-		// Test that the size of courseList is 1 after adding 1
 		CourseDB.courseList.add(course1);
 		assertEquals("Test that the size of courseList is 1 after adding 1", 1, CourseDB.courseList.size());
 
-		// Test that the first item in courseList is the same
 		CourseDB.courseList.add(course1);
 		assertEquals("Test that the first item in category arraylist is the same as the item was added.", course1,
 				CourseDB.courseList.get(0));
@@ -44,16 +41,13 @@ public class CourseTest {
 	@Test
 	public void ViewCourseTest() {
 
-		// Test that courseList is not null but empty
 		assertNotNull("Test that courseList is not null to be able to retrieve something to view", CourseDB.courseList);
 
-		// Test that viewAllCourse() method returns a String that equals
 		String expectedOutput = "Course Not Found";
 		String viewCourse = CourseDB.viewAllCourse();
 		assertEquals("Test that viewAllStudent() method returns a String that equals expectedOutput", expectedOutput,
 				viewCourse);
 
-		// Test that viewAllCourse() method returns a String that equals to
 		CourseDB.addCourse(course1);
 		CourseDB.addCourse(course2);
 
@@ -76,14 +70,11 @@ public class CourseTest {
 
 	public void delCourseTest() {
 
-		// Test that courseList is not null
 		assertNotNull("Test that CourseList is not null", CourseDB.courseList);
 
-		// Test that size of courseList is 1 before deleting 1 course
 		CourseDB.addCourse(course1);
 		assertEquals("Test that the size of courseList is 1 before deleting 1 course: ", 1, CourseDB.courseList.size());
 
-		// Test that size of courseList is 0 after deleting 1 course
 		CourseDB.delCourse(course1.getCourseCode());
 		assertEquals("Test that the size of courseList is 0 before deleting 1 course: ", 0, CourseDB.courseList.size());
 

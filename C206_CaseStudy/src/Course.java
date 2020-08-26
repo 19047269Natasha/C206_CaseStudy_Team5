@@ -40,6 +40,7 @@ public class Course {
 				System.out.println("Invalid Option");
 			}
 
+
 			System.out.println("");
 		}
 
