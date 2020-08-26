@@ -22,15 +22,24 @@ public class Course {
 
 			if (option == 1) {
 				System.out.println(CourseDB.viewAllCourse());
-			} else if (option == 2) {
+			} 
+			else if (option == 2) {
 				addCourse();
-			} else if (option == 3) {
+			} 
+			else if (option == 3) {
 				delCourse();
-			} else if (option == 4) {
+			} 
+			else if (option == 4) {
+				String courseCode = Helper.readString("Enter Course Code > ");
+				CourseDB.updateCourse(courseCode);
+			}
+			else if (option == 5) {
 				System.out.println("Goodbye!");
-			} else {
+			} 
+			else {
 				System.out.println("Invalid Option");
 			}
+
 
 			System.out.println("");
 		}
