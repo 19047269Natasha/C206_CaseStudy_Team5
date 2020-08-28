@@ -29,7 +29,7 @@ public class CourseDB {
 			}
 		} else {
 			Helper.line(30, "-");
-			output = "Course Not Found";
+			output = "No Course To Be Shown";
 		}
 
 		return output;
@@ -38,21 +38,32 @@ public class CourseDB {
 	public static void delCourse(String courseCode) {
 
 		boolean isTrue = false;
-
+		boolean isFound = false;
 		for (int i = 0; i < courseList.size(); i++) {
-			if (courseList.get(i).getCourseCode().contentEquals(courseCode)) {
-				courseList.remove(i);
+			if (courseList.get(i).getCourseCode().equals(courseCode)) {
 				isTrue = true;
+				
+			
+				for(int j =0 ; j< CourseScheduleDB.scheduleList.size(); j++) {
+					if(!CourseScheduleDB.scheduleList.get(j).getCourseScheduleID().equals(courseList.get(i).getCourseCode())) {
+						courseList.remove(i);
+						isFound = true;
+						
+					}
+				}
 			}
 		}
 
+		if(isFound == true) {
+			System.out.println("Course Deleted!");
+		}
+		else if(isFound == false) {
+			System.out.println("You can't delete a course that have schedule!");
+		}
 		if (isTrue == false) {
 			Helper.line(30, "-");
 			System.out.println("Invalid Course Code!");
-		} else {
-			Helper.line(30, "-");
-			System.out.println("Course Deleted!");
-		}
+		} 
 	}
 
 	public static String updateCourse(String courseCode, int option, String change) {
@@ -136,6 +147,31 @@ public class CourseDB {
 			System.out.println("Invalid Category Name!");
 		}
 	}
+	
+	
+	public static void listCS(String courseid) {
+		boolean isTrue = false;
+		boolean isFound = false;
+	
+		for(int i =0 ; i < courseList.size();i ++) {
+			if(courseList.get(i).getCourseCode().equalsIgnoreCase(courseid)) {
+				isTrue = true;
+				for(int j = 0; j<CourseScheduleDB.scheduleList.size(); j++) {
+					if(courseList.get(i).getCourseCode().equalsIgnoreCase(CourseScheduleDB.scheduleList.get(j).getCourseScheduleID())) {
+						System.out.println(CourseScheduleDB.viewAllCourseSchedule());
+						isFound = true;
+						break;
+					}
+				}
+			}
+		}
+		if(isTrue == false) {
+			System.out.println("Course Does Not Exist!");
+		}
+		if(isFound == false) {
+			System.out.println("Course Does Not Have Schedule!");
+		}
+	}
 
 	public static void showCourseMenu() {
 		System.out.println("COURSE MENU");
@@ -145,6 +181,8 @@ public class CourseDB {
 		System.out.println("3. Delete Course");
 		System.out.println("4. Update Course");
 		System.out.println("5. Search Course");
+		System.out.println("6. List All Course Schedules For A Course");
+		System.out.println("7. Quit");
 	}
 
 }
