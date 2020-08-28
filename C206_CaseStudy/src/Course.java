@@ -1,5 +1,6 @@
 
 public class Course {
+public class Course {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -14,7 +15,7 @@ public class Course {
 
 		int option = 0;
 
-		while (option != 6) {
+		while (option != 7) {
 
 			CourseDB.showCourseMenu();
 			System.out.println("");
@@ -24,7 +25,9 @@ public class Course {
 				System.out.println(CourseDB.viewAllCourse());
 			} 
 			else if (option == 2) {
-				addCourse();
+				
+				String courseCode = Helper.readString("Enter course code > ");
+				addCourse(courseCode);
 			} 
 			else if (option == 3) {
 				delCourse();
@@ -34,7 +37,15 @@ public class Course {
 			}
 			else if (option == 5) {
 				srhCourse();
+				
 			} 
+			else if(option == 6) {
+				String courseid  = Helper.readString("Enter course code > ");
+				CourseDB.listCS(courseid);
+			}
+			else if(option == 7) {
+				System.out.println("Goodbye!");
+			}
 			else {
 				System.out.println("Invalid Option");
 			}
@@ -45,19 +56,42 @@ public class Course {
 
 	}
 
-	public void addCourse() {
+
+	public void addCourse(String courseCode) {
 		
-		String courseCode = Helper.readString("Enter course code > ");
 		String courseTitle = Helper.readString("Enter course title > ");
 		String categoryName = Helper.readString("Enter category name > ");
 		String courseDescription = Helper.readString("Enter course description > ");
 		int courseDuration = Helper.readInt("Enter course duration > ");
 		String prerequisiteCourse = Helper.readString("Enter pre-requisite course > ");
 		
-		CourseMain newCourse = new CourseMain(courseCode, courseTitle, categoryName, courseDescription, courseDuration, prerequisiteCourse);
-		CourseDB.courseList.add(newCourse);
-		Helper.line(30, "-");
-		System.out.println("Course Added Successfully!");
+		if(!courseCode.isEmpty()) {
+			
+			boolean duplicateFound = false;
+			
+			for(int i = 0; i < CourseDB.courseList.size(); i++) {
+				if(CourseDB.courseList.get(i).getCourseCode().equals(courseCode)) {
+					duplicateFound = true;
+				}
+				
+			}
+			
+			if(duplicateFound == true) {
+				Helper.line(30, "-");
+				System.out.println("Course Code cannot be repeated!");
+			}
+			else {
+				CourseMain newCourse = new CourseMain(courseCode, courseTitle, categoryName, courseDescription, courseDuration, prerequisiteCourse);
+				CourseDB.courseList.add(newCourse);
+				Helper.line(30, "-");
+				System.out.println("Course Added Successfully!");
+				
+			}
+		}
+		
+		else {
+			System.out.println("Field is Empty!");
+		}
 		
 	}
 
@@ -132,5 +166,7 @@ public class Course {
 		CourseDB.searchCourse(categoryName);
 		
 	}
+	
+	
 
 }
