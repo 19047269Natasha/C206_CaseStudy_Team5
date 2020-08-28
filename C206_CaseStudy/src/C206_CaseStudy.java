@@ -18,6 +18,7 @@ public class C206_CaseStudy {
 			Helper.line(30, "-");
 			
 			option = Helper.readInt("Enter an option > ");
+			
 			Helper.line(30, "-");
 			
 			if(option == 1) {
