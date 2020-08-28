@@ -1,6 +1,5 @@
 
 public class Course {
-public class Course {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -22,12 +21,15 @@ public class Course {
 			option = Helper.readInt("Enter an option > ");
 
 			if (option == 1) {
-				System.out.println(CourseDB.viewAllCourse());
-			} 
-			else if (option == 2) {
 				
 				String courseCode = Helper.readString("Enter course code > ");
 				addCourse(courseCode);
+				
+			} 
+			else if (option == 2) {
+				
+				System.out.println(CourseDB.viewAllCourse());
+
 			} 
 			else if (option == 3) {
 				delCourse();
@@ -40,6 +42,7 @@ public class Course {
 				
 			} 
 			else if(option == 6) {
+				
 				String courseid  = Helper.readString("Enter course code > ");
 				CourseDB.listCS(courseid);
 			}
@@ -103,6 +106,8 @@ public class Course {
 	
 	public void updCourse() {
 		
+		Helper.line(30, "-");
+		System.out.println("UPDATE MENU");
 		Helper.line(30, "-");
 		System.out.println("1. Change Course Title");
 		System.out.println("2. Change Category Name");
