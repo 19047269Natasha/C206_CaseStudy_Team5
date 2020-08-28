@@ -11,9 +11,9 @@ public class CourseTest {
 
 	@Before
 	public void setUp() throws Exception {
-		course1 = new CourseMain("C206", "Software Development", "Infocomm", "To develop a software", 6, "Database");
-		course2 = new CourseMain("C209", "Java Programming", "Programming", "To create a program based on coding", 6,
+		course1 = new CourseMain("C209", "Java Programming", "Programming", "To create a program based on coding", 6,
 				"Object Oriented Programming");
+		course2 = new CourseMain("C206", "Software Development", "Infocomm", "To develop a software", 6, "Database");
 
 	}
 
@@ -29,24 +29,28 @@ public class CourseTest {
 
 		assertNotNull("Test that courseList is not null", CourseDB.courseList);
 
-		CourseDB.courseList.add(course1);
-		assertEquals("Test that the size of courseList is 1 after adding 1", 1, CourseDB.courseList.size());
-
-		CourseDB.courseList.add(course1);
-		assertEquals("Test that the first item in category arraylist is the same as the item was added.", course1,
-				CourseDB.courseList.get(0));
+		assertEquals("Test that the size of courseList is 0", 0, CourseDB.courseList.size());
+		
+		CourseDB.addCourse(course1);
+		assertEquals("Test that the size of courseList is 1", 1, CourseDB.courseList.size());
+		
+		assertSame("Test that the first item in course arraylist is the same as the item was added.", course1 , CourseDB.courseList.get(0));
+		
+		CourseDB.addCourse(course2);
+		assertEquals("Test that courseList size is 2 when 2 course objects are added", 2, CourseDB.courseList.size());
+		
+		assertSame("Test that the first item in course arraylist is the same as the item was added.", course2, CourseDB.courseList.get(1));
 
 	}
 
 	@Test
 	public void ViewCourseTest() {
 
-		assertNotNull("Test that courseList is not null to be able to retrieve something to view", CourseDB.courseList);
+		assertNotNull("Test that courseList is not null", CourseDB.courseList);
 
-		String expectedOutput = "Course Not Found";
+		String testOutput = "Course Not Found";
 		String viewCourse = CourseDB.viewAllCourse();
-		assertEquals("Test that viewAllStudent() method returns a String that equals expectedOutput", expectedOutput,
-				viewCourse);
+		assertEquals("Test if the courseList is empty", testOutput, viewCourse);
 
 		CourseDB.addCourse(course1);
 		CourseDB.addCourse(course2);
@@ -71,43 +75,62 @@ public class CourseTest {
 	@Test
 	public void delCourseTest() {
 
-		assertNotNull("Test that CourseList is not null", CourseDB.courseList);
+		assertNotNull("Test that courseList is not null", CourseDB.courseList);
 
 		CourseDB.addCourse(course1);
-		assertEquals("Test that the size of courseList is 1 before deleting 1 course: ", 1, CourseDB.courseList.size());
+		CourseDB.delCourse(course1.getCourseCode());
+		assertEquals("Test if the course arraylist is still 0 after adding and deleting", 0, CourseDB.courseList.size());
+
+		CourseDB.addCourse(course1);
+		CourseDB.addCourse(course2);
+		CourseDB.delCourse(course2.getCourseCode());
+		assertEquals("Test if the course arraylist is still 1 after adding 2 course and deleting 1 of the course", 1, CourseDB.courseList.size());
 
 		CourseDB.delCourse(course1.getCourseCode());
-		assertEquals("Test that the size of courseList is 0 before deleting 1 course: ", 0, CourseDB.courseList.size());
-
+		
+		CourseDB.addCourse(course1);
+		CourseDB.addCourse(course2);
+		CourseDB.delCourse(course1.getCourseCode());
+		CourseDB.delCourse(course2.getCourseCode());
+		assertEquals("Test if the arraylist is 0 after deleting 2 objects from the courseList", 0, CourseDB.courseList.size());
+		
+		CourseDB.addCourse(course1);
+		CourseDB.addCourse(course2);
+		
+		CourseDB.delCourse(course1.getCourseCode());
+		assertSame("Test if the arraylist.get(0) is course2 after deleting course1 from the arraylist", course2, CourseDB.courseList.get(0));
+		
+		CourseDB.delCourse(course2.getCourseCode());
 	}
 	
 	@Test
 	public void updCourseTest() {
 		
-		CourseDB.addCourse(course1);
+		CourseDB.courseList.add(course1);
+		CourseDB.updateCourse(course1.getCourseCode(),1,course2.getCourseTitle());
+		assertEquals("Test if the course arraylist first item course has been updated course 2 title",course2.getCourseTitle(),CourseDB.courseList.get(0).getCourseTitle());
+	
+	
+		CourseDB.courseList.add(course1);
+		CourseDB.updateCourse(course1.getCourseCode(),2,course2.getCategoryName());
+		assertEquals("Test if the course arraylist first item course has been updated to course 2 category name",course2.getCategoryName(),CourseDB.courseList.get(0).getCategoryName());
 		
-		String output0 = CourseDB.updateCourse("C206", 1, "Software");
-		assertEquals("Test that course1 title is update to new title", "Course Title Updated", output0);
+		CourseDB.courseList.add(course1);
+		CourseDB.updateCourse(course1.getCourseCode(),3,course2.getCourseDescription());
+		assertEquals("Test if the course arraylist first item course has been updated to course 2 course description",course2.getCourseDescription(),CourseDB.courseList.get(0).getCourseDescription());
+	
+		CourseDB.courseList.add(course1);
+		String changeint = String.valueOf(course2.getCourseDuration());
+		CourseDB.updateCourse(course1.getCourseCode(),4,changeint);
+		assertEquals("Test if the course arraylist first item course has been updated to course 2 course duration",course2.getCourseDuration(),CourseDB.courseList.get(0).getCourseDuration());
 		
-		String output1 = CourseDB.updateCourse("C206", 2, "Infocomm");
-		assertEquals("Test that course1 name is updated to new name", "Category Name Updated", output1);
+		CourseDB.courseList.add(course1);
+		CourseDB.updateCourse(course1.getCourseCode(),5,course2.getPrerequisiteCourse());
+		assertEquals("Test if the course arraylist first item course has been updated to course 2 pre-requisite course",course2.getPrerequisiteCourse(),CourseDB.courseList.get(0).getPrerequisiteCourse());
 		
-		String output2 = CourseDB.updateCourse("C206", 3, "To develop a software");
-		assertEquals("Test that course1 description is updated to new description", "Course Description Updated", output2);
-		
-		String output3 = CourseDB.updateCourse("C206", 4, "5");
-		assertEquals("Test that course1 duration is updated to new duration", "Course Duration Updated", output3);
-		
-		String output4 = CourseDB.updateCourse("C206", 5, "Database");
-		assertEquals("Test that course1 pre-requisite is updated to new pre-requisite", "Pre-Requisite Course Updated", output4);
-		
-		String output5 = CourseDB.updateCourse("C206", 6, "Invalid Option");
-		assertEquals("Test for invalid option error message", "Invalid Option", output5);
-		
-		String output6 = CourseDB.updateCourse("C206", 2, "Course does not exist");
-		assertEquals("Test for course does not exist error message", "Course does not exist", output6);
 	}
 	
 }
+
 
 
