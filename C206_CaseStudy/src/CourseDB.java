@@ -7,6 +7,7 @@ public class CourseDB {
 	public static void addCourse(CourseMain add) {
 
 		courseList.add(add);
+		System.out.println("Course Added!");
 
 	}
 
@@ -68,41 +69,42 @@ public class CourseDB {
 					
 					courseList.get(i).setCourseTitle(change);
 					Helper.line(30, "-");
-					output = "Course Title Updated!";
+					output += "Course Title Updated!";
+					
 				}
 				else if(option == 2) {
 					courseList.get(i).setCategoryName(change);
 					Helper.line(30, "-");
-					output = "Category Name Updated!";
+					output += "Category Name Updated!";
 				}
 				else if(option == 3) {
 					courseList.get(i).setCourseDescription(change);
 					Helper.line(30, "-");
-					output = "Course Description Updated!";
+					output += "Course Description Updated!";
 				}
 				else if(option == 4) {
 					int change_int = Integer.parseInt(change);
 					courseList.get(i).setCourseDuration(change_int);
 					Helper.line(30, "-");
-					output = "Course Duration Updated!";
+					output += "Course Duration Updated!";
 				}
 				else if(option == 5) {
 					courseList.get(i).setPrerequisiteCourse(change);
 					Helper.line(30, "-");
-					output = "Course Pre-Requisite Updated!";
+					output += "Course Pre-Requisite Updated!";
 				}
 				else if (option == 6) {
-					System.out.println("Goodbye!");
+					output += ("Goodbye!");
 				} 
 				else {
-					System.out.println("Invalid option!");
+					output += ("Invalid option!");
 				}
 
 			}
 		}
 
 		if (isTrue == false) {
-			System.out.println("Invalid Course Code!");
+			output += "Invalid Course Code!";
 		}
 		
 		return output;
@@ -145,4 +147,5 @@ public class CourseDB {
 		System.out.println("5. Search Course");
 	}
 
+}
 }
