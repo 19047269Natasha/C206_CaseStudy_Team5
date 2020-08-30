@@ -1,0 +1,106 @@
+import java.util.ArrayList;
+public class CourseCatDB {
+	public static ArrayList <CourseCategory> courseCategoryList = new ArrayList <CourseCategory> ();
+	
+	public static String viewCourseCategory() {
+		String output = "";
+		if (courseCategoryList.size() == 0) {
+			output = "No Course Schedule Currently";
+		} else {
+			output = String.format("-20%s -15%s -15%s\n" , "COURSE CATEGORY ID" ,  "COURSE CATEGORY NAME" , "COURSE CATEGORY DESCRIPTION"  );
+			for (int i = 0; i < courseCategoryList.size(); i++) {
+				output = String.format("-20%s -15% -15%s \ns", courseCategoryList.get(i).getID() , courseCategoryList.get(i).getName(), courseCategoryList.get(i).getDescription() );
+			}
+		}
+		return output;}
+	
+	public static void addCourseCategory(String ID) {
+		boolean checkID = false;
+		for (int i = 0; i < courseCategoryList.size();i++) {
+			if (ID == courseCategoryList.get(i).getID() ) {
+				System.out.println("ID is taken. Please enter another ID.");
+				checkID = true;
+				break;
+			}
+		}
+		if (checkID == false) {
+			String Name = Helper.readString("Enter course category name > ");
+			String Description = Helper.readString("Enter course category description > ");
+			
+			courseCategoryList.add(new CourseCategory(ID, Name , Description));
+			System.out.println("Course Category Added!");
+		}
+	}
+	public static void deleteCourseCategory(String ID) {
+		boolean check = false;
+		boolean ans = checkCourseMember(ID);
+		if (ans == true) {
+			System.out.println("This Course Category cannot be deleted. A member has been registered in this course category.");
+		} else {
+			for (int i = 0; i < courseCategoryList.size();i++) {
+				if (ID == courseCategoryList.get(i).getID()) {
+					courseCategoryList.remove(courseCategoryList.get(i));
+					System.out.println("Course Category Deleted!");
+					check = true;
+				}
+			}
+			if (check == false) {
+				System.out.println("Invalid Course Category ID entered.");
+			}
+		}
+		public static void updateCourseCategory(String ID) {
+			boolean checkID = false;
+			for (int i = 0; i < courseCategoryList.size();i++) {
+				if (ID == courseCategoryList.get(i).getID()) {
+					showUpdateMenu();
+					int option = Helper.readInt("Enter Update Option > ");
+					if (option == 1) {
+						
+						String name = Helper.readString("Enter new name > ");
+						courseCategoryList.get(i).setName(name);
+						
+						System.out.println("Category Name Updated!");
+					} else if (option == 2) {
+						
+						String Description = Helper.readString("Enter new description > ");
+						courseCategoryList.get(i).setDescription(Description);
+						
+						System.out.println("Decription Updated!");
+					} else if (option == 3) {
+						String name = Helper.readString("Enter new name > ");
+						String Description = Helper.readString("Enter new description > ");
+						courseCategoryList.get(i).setDescription(Description);
+						courseCategoryList.get(i).setName(name);
+						
+						System.out.println("Name and Decription Updated!");
+					
+					} else {
+						System.out.println("Invalid Option!");
+					}
+					checkID = true;
+				}
+			}
+			if (checkID == false) {
+				System.out.println("Invalid Option Entered.");
+			}
+		}
+		public static void showMenu() {
+			Helper.line(80, "=");
+			System.out.println("1. View All Course Category");
+			System.out.println("2. Add a new Course Category");
+			System.out.println("3. Delete Course Category ");
+			System.out.println("4. Update Course Category");
+			System.out.println("5. Search Course Category by name");
+			System.out.println("6. Quit");
+		}
+		
+		public static void showUpdateMenu() {
+			Helper.line(40, "-");
+			System.out.println("1. Update Name");
+			System.out.println("2. Update Description");
+			System.out.println("3. All of the above");
+		}
+		
+	
+	}
+	}
