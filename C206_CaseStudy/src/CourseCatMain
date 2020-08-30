@@ -1,0 +1,72 @@
+public class CourseCatMain {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+		int course_option = 0;
+		while (course_option != 6) {
+			CourseCatDB.showMenu();
+			course_option = Helper.readInt("Enter an option > ");
+			
+			if (course_option == 1) {
+				viewCourseCategory();
+			} else if (course_option == 2) {
+				addCourseCategory();
+			} else if(course_option == 3) {
+				 deleteCourseCategory();
+			} else if (course_option == 4) {
+				updateCourseCategory();
+			} else if (course_option == 5) {
+				System.out.println("Thank You! Back to Main Menu.");
+			} else {
+				System.out.println("Invalid option entered.");
+			}	
+		}
+
+	}
+	
+	public static void viewCourseCategory() {
+		Helper.line(80, "-");
+		System.out.println("VIEW COURSE CATEGORY");
+		Helper.line(80, "-");
+		System.out.println(CourseCatDB.viewCourseCategory());
+		
+	}
+	
+	public static void addCourseCategory() {
+		Helper.line(80, "-");
+		System.out.println("ADD COURSE CATEGORY");
+		Helper.line(80, "-");
+		String id = Helper.readString("Enter Course Category ID > ");
+		CourseCatDB.addCourseCategory(id);
+	}
+	
+	public static void deleteCourseCategory() {
+		Helper.line(80, "-");
+		System.out.println("DELETE COURSE CATEGORY");
+		Helper.line(80, "-");
+		String id = Helper.readString("Enter Course Schedule ID to be deleted > ");
+		CourseCatDB.deleteCourseCategory(id);
+	}
+	
+	public static void updateCourseSchedule() {
+		Helper.line(80, "-");
+		System.out.println("UPDATE COURSE CATEGORY");
+		Helper.line(80, "-");
+		String id = Helper.readString("Enter Course Category ID to be updated > ");
+		CourseCatDB.updateCourseCategory(id);
+	}
+	
+	public static void searchCategoryByName() {
+		Helper.line(80, "-");
+		System.out.println("SEARCH COURSE CATEGORY BY NAME");
+		Helper.line(80, "-");
+		String name = Helper.readString("Enter name to be search > ");
+		CourseCatDB.searchCourseName(name);
+	}
+
+
+	}
