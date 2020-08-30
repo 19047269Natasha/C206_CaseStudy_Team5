@@ -31,6 +31,7 @@ public class CourseSchedule {
 	
 	    courseschedule newschedule = new courseschedule (scheduleID, price, startdatetime, enddatetime, location);
 	    schedulelist.add(newschedule);
+	    System.out.println("This course schedule has been added!");
     }
 
     public void viewcourseschedule() {
@@ -49,8 +50,9 @@ public class CourseSchedule {
 	for (courseschedule schedule:schedulelist) {
 		if(deleteschedule == schedule.getID());
 		    schedulelist.remove(schedule);
+		    System.out.println("This course schedule has been deleted.");
 	    }else {
-	    	System.out.println("ID doesen't exist");
+	    	System.out.println("This course schedule ID  doesn't exist.");
 	    }	
 	}
 	    
