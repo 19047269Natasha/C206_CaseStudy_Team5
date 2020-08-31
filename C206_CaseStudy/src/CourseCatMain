@@ -52,7 +52,7 @@ public class CourseCatMain {
 		CourseCatDB.deleteCourseCategory(id);
 	}
 	
-	public static void updateCourseSchedule() {
+	public static void updateCourseCategory() {
 		Helper.line(80, "-");
 		System.out.println("UPDATE COURSE CATEGORY");
 		Helper.line(80, "-");
@@ -70,3 +70,4 @@ public class CourseCatMain {
 
 
 	}
+
