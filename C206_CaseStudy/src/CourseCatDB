@@ -5,7 +5,7 @@ public class CourseCatDB {
 	public static String viewCourseCategory() {
 		String output = "";
 		if (courseCategoryList.size() == 0) {
-			output = "No Course Category Currently";
+			output = "No Course Schedule Currently";
 		} else {
 			output = String.format("-20%s -15%s -15%s\n" , "COURSE CATEGORY ID" ,  "COURSE CATEGORY NAME" , "COURSE CATEGORY DESCRIPTION"  );
 			for (int i = 0; i < courseCategoryList.size(); i++) {
@@ -31,6 +31,7 @@ public class CourseCatDB {
 			System.out.println("Course Category Added!");
 		}
 	}
+	
 	public static void deleteCourseCategory(String ID) {
 		boolean check = false;
 		boolean ans = checkCourseMember(ID);
@@ -48,42 +49,53 @@ public class CourseCatDB {
 				System.out.println("Invalid Course Category ID entered.");
 			}
 		}
-		public static void updateCourseCategory(String ID) {
-			boolean checkID = false;
-			for (int i = 0; i < courseCategoryList.size();i++) {
-				if (ID == courseCategoryList.get(i).getID()) {
-					showUpdateMenu();
-					int option = Helper.readInt("Enter Update Option > ");
-					if (option == 1) {
-						
-						String name = Helper.readString("Enter new name > ");
-						courseCategoryList.get(i).setName(name);
-						
-						System.out.println("Category Name Updated!");
-					} else if (option == 2) {
-						
-						String Description = Helper.readString("Enter new description > ");
-						courseCategoryList.get(i).setDescription(Description);
-						
-						System.out.println("Decription Updated!");
-					} else if (option == 3) {
-						String name = Helper.readString("Enter new name > ");
-						String Description = Helper.readString("Enter new description > ");
-						courseCategoryList.get(i).setDescription(Description);
-						courseCategoryList.get(i).setName(name);
-						
-						System.out.println("Name and Decription Updated!");
+	}
+	
+	public static boolean checkCourseMember(String ID) {
+		
+	}
+	
+	public static void searchCourseName(String name) {
+		
+	}
+	
+	public static void updateCourseCategory(String ID) {
+		boolean checkID = false;
+		for (int i = 0; i < courseCategoryList.size();i++) {
+			if (ID == courseCategoryList.get(i).getID()) {
+				showUpdateMenu();
+				int option = Helper.readInt("Enter Update Option > ");
+				if (option == 1) {
 					
-					} else {
-						System.out.println("Invalid Option!");
-					}
-					checkID = true;
+					String name = Helper.readString("Enter new name > ");
+					courseCategoryList.get(i).setName(name);
+						
+					System.out.println("Category Name Updated!");
+				} else if (option == 2) {
+						
+					String Description = Helper.readString("Enter new description > ");
+					courseCategoryList.get(i).setDescription(Description);
+						
+					System.out.println("Decription Updated!");
+				} else if (option == 3) {
+					String name = Helper.readString("Enter new name > ");
+					String Description = Helper.readString("Enter new description > ");
+					courseCategoryList.get(i).setDescription(Description);
+					courseCategoryList.get(i).setName(name);
+						
+					System.out.println("Name and Decription Updated!");
+					
+				} else {
+					System.out.println("Invalid Option!");
 				}
-			}
-			if (checkID == false) {
-				System.out.println("Invalid Option Entered.");
+				checkID = true;
 			}
 		}
+		if (checkID == false) {
+			System.out.println("Invalid Option Entered.");
+		}
+	}
+	
 		public static void showMenu() {
 			Helper.line(80, "=");
 			System.out.println("1. View All Course Category");
@@ -94,6 +106,7 @@ public class CourseCatDB {
 			System.out.println("6. Quit");
 		}
 		
+		
 		public static void showUpdateMenu() {
 			Helper.line(40, "-");
 			System.out.println("1. Update Name");
@@ -101,6 +114,4 @@ public class CourseCatDB {
 			System.out.println("3. All of the above");
 		}
 		
-	
-	}
 	}
